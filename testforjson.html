@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+        window.onload = function() {
+            //请在此处修改指向的JSON文件（部分http开头APIs/错误地址/其他原因可能无法获取）
+            var url = "https://api.wolfx.jp/cenc_eqlist.json"
+            //****************************************
+            //以下代码为普通代码，无修改意义。
+            var request = new XMLHttpRequest();
+            request.open("GET", url);
+            request.onload = function() {
+                if (request.status == 200) {
+                    alert("JSON信息收取成功！   信息来源:" + url + "                         点击“确定”查看数据")
+                    updateSales(request.responseText);
+                }
+            };
+            request.send(null);
+        }   
+        function updateSales(responseText) {
+            var salesDiv = document.getElementById("sales");
+            salesDiv.innerHTML =  "<em>获取成功!状态码:200</em>(自动添加)<br>以下为回传数据:<br>" + responseText;
+            var rewrite = document.getElementById("status")
+            rewrite.innerHTML = "获取状态:成功";
+        }
+        </script>
+        <style>
+            #sales{
+                background-color: rgba(234, 220, 220, 0.406);
+                border: 1px solid rgba(147, 147, 150, 0.443);
+                margin: 0 auto;
+                background: #00000080;
+                padding: 20px 50px;
+                border-radius: 30px; 
+                transition:0.2s;
+            }
+            body{
+                background-image:url(http://50.93.205.246:8888/down/t0gRrluMwJk2);background-repeat: repeat;
+                font-family: Verdana, Geneva, Tahoma, sans-serif
+            }
+        </style>
+        <title>API获取测试</title><link rel="shortcut icon" href="https://s1.328888.xyz/2022/09/23/Iqigj.webp" >
+
+    </head>
+    <body>
+        <h1>API获取测试（第一版）</h1>
+        <p>By DHX233</p>
+            <hr>
+        <p id="sales">
+        <em>如获取成功会自动覆写此处，如果长时间未覆写可<strong>判定为失败</strong></em> 
+        </p>
+        <div id="status">获取状态:？
+
+        </div>
+        <hr>
+    </body>
+</html>
